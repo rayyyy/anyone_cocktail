@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+    tty: true
+    ports:
+      - "3000:3000"
+      - "3035:3035"
+    volumes:
+      - ./:/anyone-cocktail
+    environment:
+      TZ: Asia/Tokyo
+
+  mysql:
+    image: mysql:5.7.26
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_DATABASE: anyone_cocktail_development
+      MYSQL_ROOT_PASSWORD: pass
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  mysql:
