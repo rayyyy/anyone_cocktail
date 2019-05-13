@@ -9,7 +9,7 @@ services:
       - "3000:3000"
       - "3035:3035"
     volumes:
-      - ./:/anyone-cocktail
+      - ./:/anyone_cocktail
     environment:
       TZ: Asia/Tokyo
 
