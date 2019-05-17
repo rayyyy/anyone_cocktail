@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: bartenders
@@ -11,5 +13,5 @@
 
 class Bartender < ApplicationRecord
   validates :name, length: { maximum: 20 }, presence: true
-  validates :sex, inclusion: { in: (1..2)}, presence: true
+  validates :sex, inclusion: { in: (1..2) }, presence: true
 end
