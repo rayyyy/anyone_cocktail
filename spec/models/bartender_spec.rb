@@ -13,12 +13,18 @@ require 'rails_helper'
 
 RSpec.describe Bartender, type: :model do
 
+  it "has a valid factory" do
+    expect(build(:bartender)).to be_valid
+  end
+
   let!(:params) {
     {
       name: '新米バーテンダーくん＠名前は２０文字まで',
       sex: 1
     }
   }
+
+  it { should validate_presence_of :name }
 
   it 'is valid all parameter' do
     bartender = Bartender.new(params)
