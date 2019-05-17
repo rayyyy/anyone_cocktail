@@ -40,6 +40,10 @@ group :development, :test do
 
   gem "pry-rails"
   gem "pry-byebug"
+  gem "rubocop", require: false
+  gem "rubocop-performance"
+  gem "rubocop-rspec"
+  gem "rubocop-inflector"
 end
 
 group :development do
@@ -53,9 +57,8 @@ group :development do
 
   gem "annotate"
   gem "guard-rspec", require: false
+  gem "guard-rubocop"
   gem "foreman"
-  gem "rubocop", require: false
-  gem "rubocop-performance"
 end
 
 group :test do

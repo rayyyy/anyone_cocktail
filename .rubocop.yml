@@ -1,4 +1,8 @@
-require: rubocop-performance
+require:
+  - rubocop-performance
+  - rubocop-rspec # If you are using rubocop-rspec, this should come first.
+  - rubocop-inflector
+  - ./config/initializers/inflections # Your custom rule file
 
 AllCops:
   TargetRubyVersion: 2.6
