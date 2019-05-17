@@ -47,6 +47,8 @@ group :development do
   gem 'spring-commands-rspec'
 
   gem 'annotate'
+  gem 'guard-rspec', require: false
+  gem 'foreman'
 end
 
 group :test do
