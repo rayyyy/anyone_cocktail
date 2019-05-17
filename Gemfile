@@ -35,6 +35,9 @@ group :development, :test do
   gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails', branch: '4-0-dev'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :development do
