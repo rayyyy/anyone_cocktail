@@ -17,69 +17,16 @@ RSpec.describe Bartender, type: :model do
     expect(build(:bartender)).to be_valid
   end
 
-  let!(:params) {
-    {
-      name: '新米バーテンダーくん＠名前は２０文字まで',
-      sex: 1
-    }
-  }
-
   it { should validate_presence_of :name }
+  it { should validate_length_of(:name).is_at_most(20) }
+  it { should validate_presence_of :sex }
+  it { should validate_inclusion_of(:sex).in_range(1..2) }
 
   it 'is valid all parameter' do
-    bartender = Bartender.new(params)
-    expect(bartender).to be_valid
-  end
-
-  it 'is invalid name empty' do
-    params[:name] = ''
-    bartender = Bartender.new(params)
-    expect(bartender).to be_invalid
-  end
-
-  it 'is invalid name nil' do
-    params[:name] = nil
-    bartender = Bartender.new(params)
-    expect(bartender).to be_invalid
-  end
-
-  it 'is invalid name long text' do
-    params[:name] = '私の名前は２１文字です＠＠＠＠＠＠＠＠＠＠'
-    bartender = Bartender.new(params)
-    expect(bartender).to be_invalid
-  end
-
-  it 'is invalid sex' do
     bartender = Bartender.new(
-      name: '新米バーテンダーくん',
+      name: '新米バーテンダー太郎',
       sex: 1
     )
     expect(bartender).to be_valid
   end
-
-
-  it 'is invalid sex zero' do
-    bartender = Bartender.new(
-      name: '新米バーテンダーくん',
-      sex: 0
-    )
-    expect(bartender).to be_invalid
-  end
-
-  it 'is invalid sex 3' do
-    bartender = Bartender.new(
-      name: '新米バーテンダーくん',
-      sex: 3
-    )
-    expect(bartender).to be_invalid
-  end
-
-  it 'is invalid sex nil' do
-    bartender = Bartender.new(
-      name: '新米バーテンダーくん',
-      sex: nil
-    )
-    expect(bartender).to be_invalid
-  end
-
 end
