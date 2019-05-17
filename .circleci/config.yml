@@ -6,7 +6,6 @@ jobs:
         environment:
           TZ: Asia/Tokyo
           RAILS_ENV: test
-          BUNDLER_VERSION: 2.0.1
       - image: circleci/mysql:5.7.26
         environment:
           MYSQL_ROOT_PASSWORD: pass
@@ -16,8 +15,8 @@ jobs:
       - checkout
       # Which version of bundler?
       - run:
-          name: Which bundler?
-          command: bundle -v
+          name: setup bundler
+          command: gem install bundler
 
       # Restore bundle cache
       - restore_cache:
