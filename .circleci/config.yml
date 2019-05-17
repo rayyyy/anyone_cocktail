@@ -1,0 +1,78 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.6.3-node-browsers
+        environment:
+          TZ: Asia/Tokyo
+          RAILS_ENV: test
+      - image: circleci/mysql:5.7.26
+        environment:
+          MYSQL_ROOT_PASSWORD: pass
+          TZ: 'Asia/Tokyo'
+    working_directory: ~/anyone_cocktail
+    steps:
+      - checkout
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - anyone-cocktail-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - anyone-cocktail-bundle-v2-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      # Store bundle cache
+      - save_cache:
+          key: anyone-cocktail-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Only necessary if app uses webpacker or yarn in some other way
+      - restore_cache:
+          keys:
+            - anyone-cocktail-yarn-{{ checksum "yarn.lock" }}
+            - anyone-cocktail-yarn-
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      # Store yarn / webpacker cache
+      - save_cache:
+          key: anyone-cocktail-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+
+      # Run rspec in parallel
+      - run:
+          name: Run rspec in parallel
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      # Save test results for timing analysis
+      - store_test_results:
+          path: store_test_results
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
