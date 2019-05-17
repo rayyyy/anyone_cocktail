@@ -12,7 +12,6 @@
 FactoryBot.define do
   factory :bartender do
     name { "Name" }
-    age { 22 }
     sex { 1 }
   end
 end
