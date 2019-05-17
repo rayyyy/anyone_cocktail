@@ -12,6 +12,9 @@ services:
       - ./:/anyone_cocktail
     environment:
       TZ: Asia/Tokyo
+      RDS_HOSTNAME: mysql
+      RDS_USERNAME: root
+      RDS_PASSWORD: pass
 
   mysql:
     image: mysql:5.7.26

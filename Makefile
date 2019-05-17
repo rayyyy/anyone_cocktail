@@ -18,3 +18,6 @@ ps:
 
 rm:
 	docker-compose down
+
+start:
+	bundle exec foreman start

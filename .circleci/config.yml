@@ -6,6 +6,9 @@ jobs:
         environment:
           TZ: Asia/Tokyo
           RAILS_ENV: test
+          RDS_USERNAME: root
+          RDS_HOSTNAME: 127.0.0.1
+          RDS_PASSWORD: pass
       - image: circleci/mysql:5.7.26
         environment:
           MYSQL_ROOT_PASSWORD: pass
