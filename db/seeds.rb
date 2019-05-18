@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Bartender.seed(:id,
+  [
+    { id: 1, name: 'バーテンダー太郎', sex: 1 },
+    { id: 2, name: '初心者バーテンダーちゃん', sex: 2 },
+  ])
