@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :bartender do
-    name { "Name" }
+    name { 'Name' }
     sex { 1 }
   end
 end

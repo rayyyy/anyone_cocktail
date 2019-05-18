@@ -11,10 +11,10 @@
 #  updated_at :datetime         not null
 #
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Bartender, type: :model do
-  it "has a valid factory" do
+  it 'has a valid factory' do
     expect(build(:bartender)).to be_valid
   end
 
@@ -23,9 +23,9 @@ RSpec.describe Bartender, type: :model do
   it { should validate_presence_of :sex }
   it { should validate_inclusion_of(:sex).in_range(1..2) }
 
-  it "is valid all parameter" do
+  it 'is valid all parameter' do
     bartender = Bartender.new(
-      name: "新米バーテンダー太郎",
+      name: '新米バーテンダー太郎',
       sex: 1
     )
     expect(bartender).to be_valid
