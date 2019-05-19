@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :auth_users, :controllers => {
-    :registrations => 'auth_users/registrations'
+  devise_for :auth_users, controllers: {
+    registrations: 'auth_users/registrations'
   }
 
   root to: 'home#index'

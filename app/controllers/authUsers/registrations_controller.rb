@@ -12,11 +12,6 @@ class AuthUsers::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    pp 1
-    pp 1
-    pp 1
-    pp 1
-    pp 1
   end
 
   # GET /resource/edit
