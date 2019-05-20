@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe BartendersController, type: :controller do
-
   let!(:bartender) { create(:bartender) }
 
   describe 'GET #show' do
