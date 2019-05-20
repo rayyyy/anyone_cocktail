@@ -74,8 +74,10 @@ jobs:
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
       # Save test results for timing analysis
+      - store_artifacts:
+          path: artifacts/
       - store_test_results:
-          path: store_test_results
+          path: rspec/
 
 workflows:
   version: 2
