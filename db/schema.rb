@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_023645) do
+ActiveRecord::Schema.define(version: 2019_05_21_074720) do
 
   create_table "auth_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_023645) do
 
   create_table "bartenders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "sex", limit: 2, null: false
+    t.integer "sex", limit: 2, default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "auth_user_id", null: false

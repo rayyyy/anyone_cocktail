@@ -6,7 +6,7 @@
 #
 #  id           :bigint           not null, primary key
 #  name         :string(255)      not null
-#  sex          :integer          not null
+#  sex          :integer          default(0), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  auth_user_id :bigint           not null
@@ -24,5 +24,5 @@ class Bartender < ApplicationRecord
   belongs_to :auth_user
 
   validates :name, length: { maximum: 20 }, presence: true
-  validates :sex, inclusion: { in: (1..2) }, presence: true
+  validates :sex, inclusion: { in: (0..2) }, presence: true
 end
