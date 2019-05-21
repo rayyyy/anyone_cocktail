@@ -26,4 +26,6 @@ class AuthUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :bartender
+  validates :bartender, presence: true
+  validates_associated :bartender
 end

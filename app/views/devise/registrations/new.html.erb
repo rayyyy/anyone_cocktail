@@ -1,7 +1,15 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with(model: resource, url: auth_user_registration_path, local: true) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <%= fields model: resource.bartender || resource.build_bartender do |bartender| %>
+    <div class="field">
+      <%= bartender.label :name %><br />
+      <%= bartender.text_field :name, autofocus: true, autocomplete: "name" %>
+    </div>
+  <% end %>
+
 
   <div class="field">
     <%= f.label :email %><br />
