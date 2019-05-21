@@ -22,6 +22,7 @@
 
 FactoryBot.define do
   factory :bartender do
+    auth_user
     name { 'Name' }
     sex { 1 }
   end

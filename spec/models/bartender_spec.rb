@@ -33,7 +33,8 @@ RSpec.describe Bartender, type: :model do
   it { should validate_inclusion_of(:sex).in_range(1..2) }
 
   it 'is valid all parameter' do
-    bartender = Bartender.new(
+    auth_user = AuthUser.new
+    bartender = auth_user.build_bartender(
       name: '新米バーテンダー太郎',
       sex: 1
     )
