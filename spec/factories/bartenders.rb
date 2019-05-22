@@ -22,7 +22,7 @@
 
 FactoryBot.define do
   factory :bartender do
-    auth_user
+    association :auth_user, strategy: :build
     name { 'Name' }
     sex { 1 }
   end
