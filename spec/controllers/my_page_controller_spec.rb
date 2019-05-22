@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe MyPageController, type: :controller do
-  let!(:auth_user) { create(:auth_user) }
+  let!(:bartender) { create(:bartender) }
+  let!(:auth_user) { create(:auth_user, bartender: bartender) }
 
   describe 'GET #index' do
     it 'returns http success' do
